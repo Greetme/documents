@@ -1,6 +1,7 @@
 # `GitHub` 常见问题
 
 ---
+
 ## (190725) warning：LF will be replaced by CRLF in ××××.××(文件名) <br/> The file will have its original line ending in your working directory.
 
 ### 问题
@@ -20,7 +21,9 @@ Windows 中的换行符为 CRLF，而 Linux 下的换行符为 LF （使用 Git 
 再重新初始化，并执行添加 add 操作：  
 (3) `$ git init`  
 (4) `$ git add xxx.xx`
+
 ---
+
 ## (190901) ! [rejected] master -> master (non-fast forward)
 [参考链接1](https://blog.csdn.net/xieneng2004/article/details/81044371)，[参考链接2](https://www.jianshu.com/p/f26c71d05e44)
 
@@ -67,4 +70,5 @@ $ git push origin master
 **方法2**（不推荐）  
 强推，即利用强覆盖方式用你本地的代码替代 Git 仓库内的内容：  
 `$ git push -f origin master`
+
 ---
