@@ -353,5 +353,35 @@ $bool = $student->save();
 ```
 
 #### 1.6.3 `Eloquent ORM` 更新数据
+```
+// 通过模型更新数据
+$student = Student::find(1002);
+$student->name = 'kitty';
+$bool = $student->save();
+
+// 通过模型 + 查询构造器更新指定条件的数据
+$num= Student::where('id', '>', 1002)->update(
+	['age' => 21]
+);
+```
 
 #### 1.6.4 `Eloquent ORM` 删除数据
+```
+// 通过模型删除数据
+$student = Student::find(1039);
+$bool = $student->delete();
+
+// 通过主键删除数据
+// $num= Student::destroy(1040); // 删除一条
+// $num= Student::destroy(1036, 1038); // 删除多条
+$num= Student::destroy([1034, 1035]); // 删除多条
+
+
+// 删除指定条件的数据
+$num = Student::where('id', '>', 1023)->delete();
+```
+
+### 1.7 `Blade 模板引擎`
+
+#### 1.7.1 模板继承
+section、yield、extend、parent
