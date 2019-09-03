@@ -456,7 +456,7 @@ $num = Student::where('id', '>', 1023)->delete();
 </html>
 ```
 
-(2) 创建公用模板 /resources/views/student/section1.blade.php
+(2) 创建模板 /resources/views/student/section1.blade.php
 ```
 {{--引入公用模板--}}
 @extends('layouts')
