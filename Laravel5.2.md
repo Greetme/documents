@@ -384,4 +384,114 @@ $num = Student::where('id', '>', 1023)->delete();
 ### 1.7 `Blade 模板引擎`
 
 #### 1.7.1 模板继承
-section、yield、extend、parent
+`section`、`yield`、`extend`、`parent`
+
+(1) 创建公用模板 /resources/views/layouts.blade.php
+```
+<!DOCTYPE  html>
+<html lang="en">
+<meta charset="utf-8">
+<title>轻松学会Laravel - @yield('title')</title>
+<style>
+    .header{
+        width:1000px;
+        height:150px;
+        margin:0 auto;
+        background:#f5f5f5;
+        border: 1px solid #ddd;
+    }
+    .main{
+        width:1000px;
+        height:300px;
+        margin:0 auto;
+        clear:both;
+        margin-top:15px;
+    }
+    .main .sidebar{
+        float:left;
+        width:20%;
+        height: inherit;
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+    }
+    .main .content{
+        float:right;
+        width:75%;
+        height:inherit;
+        background:#f5f5f5;
+        border: 1px solid #ddd;
+    }
+    .footer{
+        width:1000px;
+        height:150px;
+        margin:0 auto;
+        margin-top:15px;
+        background:#f5f5f5;
+        border:1px solid #ddd;
+    }
+</style>
+<body>
+<div class = "header">
+    @section('header')
+        头部
+    @show
+</div>
+<div class = "main">
+    <div class = "sidebar">
+        @section('sidebar')
+            侧边栏
+        @show
+    </div>
+
+    <div class = "content">
+        @yield('content', '主要内容区域')
+    </div>
+</div>
+<div class = "footer">
+    @section('footer')
+        底部
+    @show
+</div>
+</body>
+</html>
+```
+
+(2) 创建公用模板 /resources/views/student/section1.blade.php
+```
+{{--引入公用模板--}}
+@extends('layouts')
+
+{{--重写头部--}}
+@section('header')
+    @parent
+    header
+@stop
+
+{{--重写侧边栏--}}
+@section('sidebar')
+    {{--@parent--}}
+    sidebar
+@stop
+
+{{--重写主要内容区域--}}
+@section('content')
+    content
+    {{--@yield('content', '主要内容区域')--}}
+@stop
+```
+
+(3) 编写路由与控制器方法 Student/section1
+```
+Route::any('section1', ['uses' => 'StudentController@section1']);
+```
+
+```
+/**
+ * 模板继承 demo
+ * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+ */
+public function section1()
+{
+	return view('Student.section1');
+}
+```
